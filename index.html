@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="vi"><head>
+    <meta charset="UTF-8">
+    <title>Bản Đồ Mục Tiêu Tài Chính 12 Tháng — DuongEdu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap">
+<style>
+#mttc{
+  --navy-900: #0b1f33;
+  --navy-800: #10293f;
+  --navy-700: #16334d;
+  --navy-100: #e8eef5;
+  --gold: #f2a92e;
+  --gold-dark: #d98f10;
+  --green: #1fa06a;
+  --green-bg: #e6f6ef;
+  --amber: #e08a00;
+  --amber-bg: #fdf3e0;
+  --red: #d64545;
+  --red-bg: #fdecec;
+  --ink: #1c2b3a;
+  --ink-soft: #5b6b7c;
+  --line: #dde5ee;
+  --card: #ffffff;
+  --bg: #f2f5f9;
+  --radius: 14px;
+  --shadow: 0 2px 10px rgba(11, 31, 51, .07);
+  font-size: 20px;
+}
+#mttc,#mttc *{ margin: 0; padding: 0; box-sizing: border-box; }
+#mttc{
+  font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+#mttc .app{ max-width: 1100px; margin: 0 auto; padding: 28px 16px 40px; }
+#mttc .app-header{ text-align: center; margin-bottom: 26px; }
+#mttc .badge-top{
+  display: inline-block;
+  background: var(--navy-900);
+  color: var(--gold);
+  font-size: .78em;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+#mttc .app-header h1{
+  font-size: clamp(1.5em, 4vw, 2.2em);
+  font-weight: 800;
+  color: var(--navy-900);
+  line-height: 1.2;
+}
+#mttc .app-header h1 span{ color: var(--gold-dark); }
+#mttc .app-header .sub{
+  max-width: 620px;
+  margin: 10px auto 0;
+  color: var(--ink-soft);
+  font-size: 1em;
+}
+#mttc .layout{
+  display: grid;
+  grid-template-columns: minmax(320px, 5fr) minmax(340px, 6fr);
+  gap: 20px;
+  align-items: start;
+}
+#mttc .panel{
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px 22px;
+}
+#mttc .panel-title{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+#mttc .panel-title h2{ font-size: 1.05em; font-weight: 700; color: var(--navy-900); flex: 1; }
+#mttc .step-dot{
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--navy-900);
+  font-weight: 800;
+  font-size: .85em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+#mttc .field{ margin-bottom: 16px; }
+#mttc .field label{
+  display: block;
+  font-size: .95em;
+  font-weight: 600;
+  color: var(--navy-800);
+  margin-bottom: 6px;
+}
+#mttc .field label b{ color: var(--gold-dark); }
+#mttc .input-wrap{
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: #fbfcfe;
+  transition: border-color .15s, box-shadow .15s;
+}
+#mttc .input-wrap:focus-within{
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(242, 169, 46, .18);
+}
+#mttc .input-wrap.invalid{ border-color: var(--red); }
+#mttc .input-wrap input{
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 11px 12px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  outline: none;
+}
+#mttc .input-wrap .unit{
+  flex: none;
+  padding: 0 12px;
+  font-size: .8em;
+  font-weight: 600;
+  color: var(--ink-soft);
+  border-left: 1px solid var(--line);
+}
+#mttc .hint{
+  font-size: .84em;
+  color: var(--ink-soft);
+  margin-top: 5px;
+  min-height: 1.1em;
+}
+#mttc .hint.money{ color: var(--gold-dark); font-weight: 600; }
+#mttc .field-goal .input-wrap{ border-color: var(--gold); background: #fffaf0; }
+#mttc .divider{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 16px;
+  color: var(--ink-soft);
+  font-size: .78em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+#mttc .divider::before,#mttc .divider::after{
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+#mttc .form-error{
+  background: var(--red-bg);
+  color: var(--red);
+  font-size: .85em;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+#mttc .btn-row{ display: flex; gap: 10px; margin-top: 6px; }
+#mttc .btn-primary{
+  flex: 1;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--navy-900);
+  border: 0;
+  border-radius: 10px;
+  padding: 13px 18px;
+  font: inherit;
+  font-weight: 800;
+  font-size: 1em;
+  cursor: pointer;
+  transition: transform .12s, box-shadow .12s;
+  box-shadow: 0 4px 14px rgba(217, 143, 16, .35);
+}
+#mttc .btn-primary:hover{ transform: translateY(-1px); box-shadow: 0 6px 18px rgba(217, 143, 16, .45); }
+#mttc .btn-primary:active{ transform: translateY(0); }
+#mttc .btn-secondary{
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 13px 18px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color .12s, color .12s;
+}
+#mttc .btn-secondary:hover{ border-color: var(--ink-soft); color: var(--ink); }
+#mttc .btn-ghost{
+  background: var(--navy-100);
+  color: var(--navy-800);
+  border: 0;
+  border-radius: 999px;
+  padding: 6px 13px;
+  font: inherit;
+  font-size: .78em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .12s;
+}
+#mttc .btn-ghost:hover{ background: #d8e3ef; }
+#mttc .result-empty{
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--ink-soft);
+}
+#mttc .result-empty .empty-icon{ font-size: 2.6em; margin-bottom: 12px; }
+#mttc .result-empty p b{ color: var(--navy-800); }
+#mttc .result-empty .empty-sub{ font-size: .92em; margin-top: 8px; }
+#mttc .lead-gate{ animation: fadeUp .45s ease both; }
+#mttc .lead-card{
+  border: 2px solid var(--gold);
+  background: #fffdf6;
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  text-align: center;
+}
+#mttc .lead-icon{ font-size: 2.2em; margin-bottom: 8px; }
+#mttc .lead-heading{
+  font-size: 1.08em;
+  font-weight: 800;
+  color: var(--navy-900);
+  margin-bottom: 6px;
+}
+#mttc .lead-sub{
+  font-size: .95em;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+#mttc .lead-card form{ text-align: left; }
+#mttc .optional{ font-weight: 400; color: var(--ink-soft); font-size: .78em; }
+#mttc .btn-full{ width: 100%; margin-top: 4px; }
+#mttc .lead-privacy{
+  font-size: .74em;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 12px;
+}
+#mttc .score-card{
+  background: linear-gradient(150deg, var(--navy-900), var(--navy-700));
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 22px 22px 20px;
+  margin-bottom: 16px;
+}
+#mttc .score-label{ font-size: .82em; font-weight: 600; opacity: .75; text-transform: uppercase; letter-spacing: .04em; }
+#mttc .score-value{
+  font-size: clamp(1.7em, 4.5vw, 2.3em);
+  font-weight: 800;
+  color: var(--gold);
+  margin: 4px 0 2px;
+  line-height: 1.15;
+}
+#mttc .score-goal{ font-size: .92em; opacity: .85; margin-bottom: 16px; }
+#mttc .score-goal span{ font-weight: 700; }
+#mttc .progress-track{
+  height: 12px;
+  background: rgba(255, 255, 255, .15);
+  border-radius: 999px;
+  overflow: hidden;
+}
+#mttc .progress-fill{
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gold), #ffd479);
+  transition: width .8s cubic-bezier(.2, .8, .2, 1);
+}
+#mttc .progress-fill.ok{ background: linear-gradient(90deg, #23c17f, #7fe6b8); }
+#mttc .progress-fill.warn{ background: linear-gradient(90deg, var(--gold), #ffd479); }
+#mttc .progress-fill.bad{ background: linear-gradient(90deg, #e05c5c, #ff9d9d); }
+#mttc .progress-meta{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+#mttc .status-badge{
+  font-size: .8em;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+#mttc .status-badge.ok{ background: rgba(35, 193, 127, .2); color: #7fe6b8; }
+#mttc .status-badge.warn{ background: rgba(242, 169, 46, .2); color: #ffd479; }
+#mttc .status-badge.bad{ background: rgba(224, 92, 92, .22); color: #ff9d9d; }
+#mttc .progress-pct{ font-size: 1.25em; font-weight: 800; }
+#mttc .gap-line{
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, .14);
+  font-size: .95em;
+}
+#mttc .gap-line b{ color: var(--gold); }
+#mttc .gap-line.surplus b{ color: #7fe6b8; }
+#mttc .bottleneck-card{
+  background: var(--amber-bg);
+  border: 1.5px solid #f3ddb0;
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 20px;
+}
+#mttc .bottleneck-card.good{ background: var(--green-bg); border-color: #bfe8d4; }
+#mttc .bn-label{ font-size: .78em; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--amber); }
+#mttc .bottleneck-card.good .bn-label{ color: var(--green); }
+#mttc .bn-name{ font-size: 1.05em; font-weight: 800; color: var(--navy-900); margin: 3px 0; }
+#mttc .bn-desc{ font-size: .95em; color: var(--ink-soft); }
+#mttc .plans-title{ display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+#mttc .plans-title h2{ font-size: 1.05em; font-weight: 700; color: var(--navy-900); }
+#mttc .plans{ display: grid; gap: 12px; margin-bottom: 20px; }
+#mttc .plan-card{
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: border-color .15s;
+}
+#mttc .plan-card.highlight{ border-color: var(--gold); background: #fffdf6; box-shadow: 0 2px 10px rgba(242, 169, 46, .15); }
+#mttc .plan-tag{
+  display: inline-block;
+  font-size: .72em;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+#mttc .tag-marketing{ background: #e7f0fc; color: #2469c8; }
+#mttc .tag-sales{ background: #fdecec; color: #c53c3c; }
+#mttc .tag-balance{ background: #e6f6ef; color: #16855a; }
+#mttc .plan-main{ font-size: 1em; font-weight: 600; color: var(--ink); }
+#mttc .plan-main b{ color: var(--navy-900); font-size: 1.08em; }
+#mttc .plan-note{ font-size: .88em; color: var(--ink-soft); margin-top: 5px; }
+#mttc .recommend-card{
+  background: var(--navy-900);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+#mttc .rec-label{ font-size: .8em; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--gold); margin-bottom: 8px; }
+#mttc .rec-text{ font-size: 1em; margin-bottom: 16px; opacity: .95; }
+#mttc .rec-text b{ color: var(--gold); }
+#mttc .btn-cta{
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--navy-900);
+  font-weight: 800;
+  font-size: .98em;
+  text-decoration: none;
+  padding: 13px 26px;
+  border-radius: 999px;
+  transition: transform .12s, box-shadow .12s;
+  box-shadow: 0 4px 16px rgba(242, 169, 46, .4);
+}
+#mttc .btn-cta:hover{ transform: translateY(-2px); box-shadow: 0 7px 20px rgba(242, 169, 46, .5); }
+#mttc .app-footer{
+  text-align: center;
+  font-size: .8em;
+  color: var(--ink-soft);
+  margin-top: 26px;
+}
+#mttc .result-body{ animation: fadeUp .45s ease both; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 860px){
+  #mttc .layout{ grid-template-columns: 1fr; }
+  #mttc .app{ padding: 20px 12px 32px; }
+  #mttc .panel{ padding: 20px 16px; }
+  #mttc .btn-row{ flex-direction: column; }
+  #mttc .result-empty{ padding: 36px 16px; }
+}
+</style>
+</head>
+<body>
+<div id="mttc">
+<div class="app">
+
+  <header class="app-header">
+    <div class="badge-top">Công cụ dành riêng cho Môi giới Bất động sản</div>
+    <h1>Bản Đồ Mục Tiêu Tài Chính <span>12 Tháng</span></h1>
+    <p class="sub">Nhập 5 chỉ số kinh doanh hiện tại — hệ thống sẽ cho bạn biết mục tiêu có khả thi hay không, điểm nghẽn nằm ở đâu và con đường nào giúp bạn về đích.</p>
+  </header>
+
+  <div class="layout">
+
+    <section class="panel panel-form">
+      <div class="panel-title">
+        <span class="step-dot">1</span>
+        <h2>Chỉ số của bạn</h2>
+        <button type="button" id="btnSample" class="btn-ghost" title="Điền dữ liệu mẫu để xem thử">Dữ liệu mẫu</button>
+      </div>
+
+      <form id="calcForm" novalidate>
+
+        <div class="field field-goal">
+          <label for="goal">🎯 Mục tiêu thu nhập 12 tháng tới</label>
+          <div class="input-wrap">
+            <input type="text" id="goal" inputmode="numeric" placeholder="Ví dụ: 2.000.000.000" autocomplete="off">
+            <span class="unit">VNĐ</span>
+          </div>
+          <div class="hint money" id="goalHint">= 1 tỷ</div>
+        </div>
+
+        <div class="divider"><span>5 chỉ số quyết định</span></div>
+
+        <div class="field">
+          <label for="avgPrice"><b>1.</b> Giá bán trung bình một bất động sản</label>
+          <div class="input-wrap">
+            <input type="text" id="avgPrice" inputmode="numeric" placeholder="Ví dụ: 7.500.000.000" autocomplete="off">
+            <span class="unit">VNĐ</span>
+          </div>
+          <div class="hint" id="avgPriceHint">Bán phân khúc 5–10 tỷ thì giá trung bình khoảng 7,5 tỷ</div>
+        </div>
+
+        <div class="field">
+          <label for="netProfit"><b>2.</b> Tỷ lệ lợi nhuận ròng mỗi giao dịch</label>
+          <div class="input-wrap">
+            <input type="text" id="netProfit" inputmode="decimal" placeholder="Ví dụ: 1" autocomplete="off">
+            <span class="unit">%</span>
+          </div>
+          <div class="hint">= (Hoa hồng − Chi phí) ÷ Giá bán × 100%. Thường quanh mức 1%</div>
+        </div>
+
+        <div class="field">
+          <label for="closeRate"><b>3.</b> Tỷ lệ chốt trung bình</label>
+          <div class="input-wrap">
+            <input type="text" id="closeRate" inputmode="decimal" placeholder="Ví dụ: 2" autocomplete="off">
+            <span class="unit">%</span>
+          </div>
+          <div class="hint">100 khách tiềm năng chốt được 2 giao dịch = 2%</div>
+        </div>
+
+        <div class="field">
+          <label for="leadsPerDay"><b>4.</b> Số khách hàng tiềm năng mỗi tháng</label>
+          <div class="input-wrap">
+            <input type="text" id="leadsPerDay" inputmode="decimal" placeholder="Ví dụ: 60" autocomplete="off">
+            <span class="unit">khách/tháng</span>
+          </div>
+          <div class="hint">Khách có nhu cầu VÀ có khả năng chi trả</div>
+        </div>
+
+        <div class="field">
+          <label for="repeatBuy"><b>5.</b> Số lần mua trung bình mỗi khách (12 tháng)</label>
+          <div class="input-wrap">
+            <input type="text" id="repeatBuy" inputmode="decimal" placeholder="Ví dụ: 1" autocomplete="off">
+            <span class="unit">lần</span>
+          </div>
+          <div class="hint">20 giao dịch từ 20 khách = 1 lần/khách</div>
+        </div>
+
+        <div class="form-error" id="formError" hidden></div>
+
+        <div class="btn-row">
+          <button type="submit" class="btn-primary" id="btnCalc">Tính mục tiêu →</button>
+          <button type="button" class="btn-secondary" id="btnReset">Làm lại</button>
+        </div>
+
+      </form>
+    </section>
+
+    <section class="panel panel-result" id="resultPanel">
+
+      <div class="result-empty" id="resultEmpty">
+        <div class="empty-icon">📊</div>
+        <p><b>Kết quả sẽ hiển thị tại đây</b></p>
+        <p class="empty-sub">Điền đủ 6 ô bên trái và bấm <b>"Tính mục tiêu"</b>.<br>Chưa có số chính xác? Cứ ước lượng — sau này đo trên 100 khách tiềm năng tiếp theo là có con số thật.</p>
+      </div>
+
+      <div class="result-body" id="resultBody" hidden>
+
+        <div class="panel-title">
+          <span class="step-dot">2</span>
+          <h2>Kết quả của bạn</h2>
+        </div>
+
+        <div class="score-card" id="scoreCard">
+          <div class="score-label">Thu nhập dự kiến 12 tháng</div>
+          <div class="score-value" id="projectedIncome">—</div>
+          <div class="score-goal">Mục tiêu: <span id="goalEcho">—</span></div>
+
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-meta">
+            <span class="status-badge" id="statusBadge">—</span>
+            <span class="progress-pct" id="completionPct">—</span>
+          </div>
+
+          <div class="gap-line" id="gapLine">—</div>
+        </div>
+
+        <div class="bottleneck-card" id="bottleneckCard">
+          <div class="bn-label">⚠️ Điểm nghẽn chính</div>
+          <div class="bn-name" id="bottleneckName">—</div>
+          <div class="bn-desc" id="bottleneckDesc">—</div>
+        </div>
+
+        <div class="plans-title" id="plansTitle">
+          <span class="step-dot">3</span>
+          <h2>3 hướng nâng cấp để về đích</h2>
+        </div>
+
+        <div class="plans" id="plansWrap">
+          <div class="plan-card" id="plan1">
+            <div class="plan-tag tag-marketing">Nâng cấp Marketing</div>
+            <div class="plan-main" id="plan1Main">—</div>
+            <div class="plan-note" id="plan1Note">—</div>
+          </div>
+          <div class="plan-card" id="plan2">
+            <div class="plan-tag tag-sales">Nâng cấp Bán hàng</div>
+            <div class="plan-main" id="plan2Main">—</div>
+            <div class="plan-note" id="plan2Note">—</div>
+          </div>
+          <div class="plan-card" id="plan3">
+            <div class="plan-tag tag-balance">Nâng cấp toàn diện hệ thống</div>
+            <div class="plan-main" id="plan3Main">—</div>
+            <div class="plan-note" id="plan3Note">—</div>
+          </div>
+        </div>
+
+        <div class="recommend-card" id="recommendCard">
+          <div class="rec-label">🚀 Bước tiếp theo của bạn</div>
+          <div class="rec-text">Bạn đã biết mình cần cải thiện chỉ số nào. Nhưng câu hỏi quan trọng hơn là: <b>làm thế nào để cải thiện các chỉ số đó một cách có hệ thống?</b></div>
+          <div class="rec-text">Tham gia sự kiện online 2 ngày <b>"Ứng Dụng AI Xây Hệ Thống Kinh Doanh Bất Động Sản"</b> để biết cách xây dựng hệ thống của riêng bạn.</div>
+          <a class="btn-cta" href="https://realtoros.vn/workshop?utm_source=muctieu" target="_blank" rel="noopener">Đăng ký sự kiện Ứng Dụng AI →</a>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="app-footer">
+    Công thức: Giá bán TB × Lợi nhuận ròng × Tỷ lệ chốt × Số lần mua × Khách tiềm năng 12 tháng · Toàn bộ tính toán chạy trên trình duyệt của bạn
+  </footer>
+
+</div>
+</div>
+<script>
+(function () {
+  "use strict";
+
+  var DAYS_PER_YEAR = 12;
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  var form = $("calcForm");
+  var fields = {
+    goal: $("goal"),
+    avgPrice: $("avgPrice"),
+    netProfit: $("netProfit"),
+    closeRate: $("closeRate"),
+    leadsPerDay: $("leadsPerDay"),
+    repeatBuy: $("repeatBuy")
+  };
+
+  var MONEY_FIELDS = ["goal", "avgPrice"];
+  var PERCENT_FIELDS = ["netProfit", "closeRate"];
+
+  function formatVND(n) {
+    return Math.round(n).toLocaleString("vi-VN") + " VNĐ";
+  }
+
+  function formatShortVND(n) {
+    var abs = Math.abs(n);
+    if (abs >= 1e9) {
+      var ty = Math.floor(abs / 1e9);
+      var trieu = Math.round((abs - ty * 1e9) / 1e6);
+      if (trieu >= 1000) { ty += 1; trieu = 0; }
+      return trieu > 0 ? ty + " tỷ " + trieu + " triệu" : ty + " tỷ";
+    }
+    if (abs >= 1e6) return Math.round(abs / 1e6) + " triệu";
+    if (abs >= 1e3) return Math.round(abs / 1e3) + " nghìn";
+    return Math.round(abs).toLocaleString("vi-VN") + " đ";
+  }
+
+  function roundToDisplay(n) {
+    var sign = n < 0 ? -1 : 1;
+    var abs = Math.abs(n);
+    if (abs >= 1e6) return sign * Math.round(abs / 1e6) * 1e6;
+    if (abs >= 1e3) return sign * Math.round(abs / 1e3) * 1e3;
+    return Math.round(n);
+  }
+
+  function trimNum(x) {
+    var r = Math.round(x * 10) / 10;
+    return r.toLocaleString("vi-VN", { maximumFractionDigits: 1 });
+  }
+
+  function formatPct(x) {
+    return trimNum(x) + "%";
+  }
+
+  function parseNum(raw) {
+    if (raw == null) return NaN;
+    var s = String(raw).trim();
+    if (!s) return NaN;
+    s = s.replace(/\s/g, "");
+    var hasDot = s.indexOf(".") !== -1;
+    var hasComma = s.indexOf(",") !== -1;
+    if (hasDot && hasComma) {
+      s = s.replace(/\./g, "").replace(",", ".");
+    } else if (hasComma) {
+      s = s.replace(",", ".");
+    } else if (hasDot) {
+      var parts = s.split(".");
+      if (parts.length > 2 || (parts.length === 2 && parts[1].length === 3)) {
+        s = parts.join("");
+      }
+    }
+    var n = parseFloat(s);
+    return isNaN(n) ? NaN : n;
+  }
+
+  MONEY_FIELDS.forEach(function (key) {
+    var input = fields[key];
+    input.addEventListener("input", function () {
+      var digits = input.value.replace(/\D/g, "");
+      input.value = digits ? Number(digits).toLocaleString("vi-VN") : "";
+      updateMoneyHint(key);
+      input.closest(".input-wrap").classList.remove("invalid");
+    });
+  });
+
+  PERCENT_FIELDS.concat(["leadsPerDay", "repeatBuy"]).forEach(function (key) {
+    fields[key].addEventListener("input", function () {
+      fields[key].closest(".input-wrap").classList.remove("invalid");
+    });
+  });
+
+  function updateMoneyHint(key) {
+    var hintEl = key === "goal" ? $("goalHint") : $("avgPriceHint");
+    var n = parseNum(fields[key].value);
+    if (!isNaN(n) && n > 0) {
+      hintEl.textContent = "= " + formatShortVND(n);
+      hintEl.classList.add("money");
+    } else {
+      hintEl.textContent = key === "goal" ? " " : "Bán phân khúc 5–10 tỷ thì giá trung bình khoảng 7,5 tỷ";
+      hintEl.classList.remove("money");
+    }
+  }
+
+  $("btnSample").addEventListener("click", function () {
+    fields.goal.value = (2000000000).toLocaleString("vi-VN");
+    fields.avgPrice.value = (7500000000).toLocaleString("vi-VN");
+    fields.netProfit.value = "1";
+    fields.closeRate.value = "2";
+    fields.leadsPerDay.value = "90";
+    fields.repeatBuy.value = "1";
+    updateMoneyHint("goal");
+    updateMoneyHint("avgPrice");
+    clearErrors();
+  });
+
+  $("btnReset").addEventListener("click", function () {
+    form.reset();
+    Object.keys(fields).forEach(function (k) {
+      fields[k].value = "";
+    });
+    updateMoneyHint("goal");
+    updateMoneyHint("avgPrice");
+    clearErrors();
+    $("resultBody").hidden = true;
+    $("resultEmpty").hidden = false;
+  });
+
+  function clearErrors() {
+    $("formError").hidden = true;
+    Object.keys(fields).forEach(function (k) {
+      fields[k].closest(".input-wrap").classList.remove("invalid");
+    });
+  }
+
+  function readInputs() {
+    clearErrors();
+    var labels = {
+      goal: "Mục tiêu thu nhập",
+      avgPrice: "Giá bán trung bình",
+      netProfit: "Tỷ lệ lợi nhuận ròng",
+      closeRate: "Tỷ lệ chốt",
+      leadsPerDay: "Số khách tiềm năng mỗi tháng",
+      repeatBuy: "Số lần mua mỗi khách"
+    };
+
+    var values = {};
+    var missing = [];
+    var invalid = [];
+
+    Object.keys(fields).forEach(function (k) {
+      var raw = fields[k].value;
+      var n = parseNum(raw);
+      if (String(raw).trim() === "") {
+        missing.push(labels[k]);
+        fields[k].closest(".input-wrap").classList.add("invalid");
+      } else if (isNaN(n) || n <= 0) {
+        invalid.push(labels[k]);
+        fields[k].closest(".input-wrap").classList.add("invalid");
+      } else {
+        values[k] = n;
+      }
+    });
+
+    if (missing.length || invalid.length) {
+      var msg = "";
+      if (missing.length) msg += "Bạn chưa nhập: " + missing.join(", ") + ". ";
+      if (invalid.length) msg += "Giá trị phải là số dương: " + invalid.join(", ") + ".";
+      showError(msg.trim());
+      return null;
+    }
+
+    if (values.netProfit > 100 || values.closeRate > 100) {
+      showError("Tỷ lệ phần trăm không thể vượt quá 100%.");
+      if (values.netProfit > 100) fields.netProfit.closest(".input-wrap").classList.add("invalid");
+      if (values.closeRate > 100) fields.closeRate.closest(".input-wrap").classList.add("invalid");
+      return null;
+    }
+
+    return values;
+  }
+
+  function showError(msg) {
+    var el = $("formError");
+    el.textContent = "⚠️ " + msg;
+    el.hidden = false;
+  }
+
+  function compute(v) {
+    var totalLeads = v.leadsPerDay * DAYS_PER_YEAR;
+    var incomePerLead = v.avgPrice * (v.netProfit / 100) * (v.closeRate / 100) * v.repeatBuy;
+    var projected = incomePerLead * totalLeads;
+    var completion = (projected / v.goal) * 100;
+    var gap = v.goal - projected;
+
+    var requiredLeadsPerDay = v.goal / (incomePerLead * DAYS_PER_YEAR);
+    var requiredCloseRate = (v.goal / (v.avgPrice * (v.netProfit / 100) * v.repeatBuy * totalLeads)) * 100;
+
+    var factor = Math.pow(v.goal / projected, 1 / 3);
+    var balanced = {
+      leadsPerDay: v.leadsPerDay * factor,
+      closeRate: v.closeRate * factor,
+      netProfit: v.netProfit * factor,
+      factor: factor
+    };
+
+    var benchClose = Math.max(v.closeRate, 2);
+    var benchProfit = Math.max(v.netProfit, 1);
+    var requiredLeadsBench = v.goal /
+      (v.avgPrice * (benchProfit / 100) * (benchClose / 100) * v.repeatBuy * DAYS_PER_YEAR);
+
+    var lowSales = v.closeRate < 2;
+    var lowLeads = v.leadsPerDay < requiredLeadsBench * 0.6;
+
+    var bottleneck;
+    if (completion >= 100) {
+      bottleneck = "none";
+    } else if (lowSales && lowLeads) {
+      bottleneck = "overall";
+    } else if (lowSales) {
+      bottleneck = "sales";
+    } else if (lowLeads) {
+      bottleneck = "leads";
+    } else if (completion < 60) {
+      bottleneck = "margin";
+    } else {
+      bottleneck = "balance";
+    }
+
+    return {
+      totalLeads: totalLeads,
+      projected: projected,
+      completion: completion,
+      gap: gap,
+      requiredLeadsPerDay: requiredLeadsPerDay,
+      requiredCloseRate: requiredCloseRate,
+      balanced: balanced,
+      bottleneck: bottleneck
+    };
+  }
+
+  var BOTTLENECK_INFO = {
+    none: {
+      name: "Không có điểm nghẽn lớn 🎉",
+      desc: "Các chỉ số hiện tại đủ sức đưa bạn đến mục tiêu. Việc của bạn là duy trì kỷ luật đo lường và vận hành đều đặn mỗi tuần."
+    },
+    sales: {
+      name: "Hệ thống bán hàng",
+      desc: "Tỷ lệ chốt dưới 2% — vấn đề không nằm ở marketing mà ở quy trình bán hàng. Tăng tỷ lệ chốt là đòn bẩy nhanh nhất của bạn lúc này."
+    },
+    leads: {
+      name: "Hệ thống tạo khách hàng tiềm năng",
+      desc: "Lượng khách tiềm năng mỗi tháng đang thấp hơn nhiều so với mức cần thiết. Bạn cần một cỗ máy tạo khách hàng đều đặn hơn."
+    },
+    margin: {
+      name: "Giá trị giao dịch / biên lợi nhuận",
+      desc: "Lợi nhuận ròng mỗi giao dịch đang thấp hơn đáng kể so với mức cần thiết. Hãy xem lại phân khúc sản phẩm và chi phí trên mỗi giao dịch."
+    },
+    overall: {
+      name: "Hệ thống kinh doanh tổng thể",
+      desc: "Nhiều chỉ số cùng ở mức thấp — bạn cần nâng cấp đồng bộ cả cách tạo khách hàng lẫn cách bán hàng, thay vì chỉ sửa một điểm."
+    },
+    balance: {
+      name: "Cần tối ưu thêm để về đích",
+      desc: "Không có chỉ số nào quá yếu, nhưng tổng thể chưa đủ để đạt mục tiêu. Cải thiện nhẹ vài chỉ số cùng lúc là con đường khả thi nhất."
+    }
+  };
+
+  function render(v, r) {
+    $("resultEmpty").hidden = true;
+    $("resultBody").hidden = false;
+
+    $("projectedIncome").textContent = formatShortVND(r.projected) + " VNĐ";
+    $("projectedIncome").title = formatVND(r.projected);
+    $("goalEcho").textContent = formatShortVND(v.goal) + " VNĐ";
+
+    var pct = r.completion;
+    var pctDisplay = pct >= 1000 ? ">999%" : Math.round(pct) + "%";
+    $("completionPct").textContent = pctDisplay;
+
+    var cls = pct >= 100 ? "ok" : pct >= 70 ? "warn" : "bad";
+    var statusText = pct >= 100 ? "✅ Có khả năng đạt mục tiêu"
+      : pct >= 70 ? "🟡 Gần đạt, cần tối ưu thêm"
+      : "🔴 Chưa đạt, cần điều chỉnh chỉ số";
+
+    var badge = $("statusBadge");
+    badge.textContent = statusText;
+    badge.className = "status-badge " + cls;
+
+    var fill = $("progressFill");
+    fill.className = "progress-fill " + cls;
+    fill.style.width = "0%";
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        fill.style.width = Math.min(pct, 100) + "%";
+      });
+    });
+
+    var gapEl = $("gapLine");
+    var gapShown = roundToDisplay(v.goal) - roundToDisplay(r.projected);
+    if (gapShown > 0) {
+      gapEl.classList.remove("surplus");
+      gapEl.innerHTML = "Còn thiếu <b>" + formatShortVND(gapShown) + " VNĐ</b> so với mục tiêu";
+    } else if (gapShown < 0) {
+      gapEl.classList.add("surplus");
+      gapEl.innerHTML = "Vượt mục tiêu <b>" + formatShortVND(-gapShown) + " VNĐ</b> — bạn có thể đặt mục tiêu cao hơn, hoặc kiểm tra lại độ chính xác của 5 chỉ số";
+    } else {
+      gapEl.classList.add("surplus");
+      gapEl.innerHTML = "Vừa chạm đúng mục tiêu 🎯 — giữ vững nhịp này trong 12 tháng";
+    }
+
+    var info = BOTTLENECK_INFO[r.bottleneck];
+    var bnCard = $("bottleneckCard");
+    bnCard.classList.toggle("good", r.bottleneck === "none");
+    $("bottleneckName").textContent = info.name;
+    $("bottleneckDesc").textContent = info.desc;
+
+    var showPlans = r.completion < 100;
+    $("plansTitle").style.display = showPlans ? "" : "none";
+    $("plansWrap").style.display = showPlans ? "" : "none";
+
+    if (showPlans) {
+      $("plan1Main").innerHTML = "Tăng khách tiềm năng từ " + trimNum(v.leadsPerDay) +
+        " lên <b>" + Math.ceil(r.requiredLeadsPerDay) + " khách/tháng</b>";
+      $("plan1Note").textContent = "Giữ nguyên các chỉ số còn lại. Tương đương khoảng " +
+        (Math.ceil(r.requiredLeadsPerDay) * 12).toLocaleString("vi-VN") + " khách tiềm năng trong 12 tháng.";
+
+      var closeNote = "Giữ nguyên các chỉ số còn lại.";
+      if (r.requiredCloseRate > 10) closeNote += " Mức này rất thách thức — nên kết hợp thêm tăng nguồn khách.";
+      $("plan2Main").innerHTML = "Nâng tỷ lệ chốt từ " + formatPct(v.closeRate) +
+        " lên <b>" + Math.ceil(r.requiredCloseRate) + "%</b>";
+      $("plan2Note").textContent = closeNote;
+
+      var pctUp = Math.round((r.balanced.factor - 1) * 100);
+      $("plan3Main").innerHTML = "Cải thiện đều cả 3 chỉ số khoảng <b>+" + pctUp + "% mỗi chỉ số</b>";
+      $("plan3Note").textContent =
+        "Khách tiềm năng: " + trimNum(v.leadsPerDay) + " → " + Math.ceil(r.balanced.leadsPerDay) + " khách/tháng · " +
+        "Tỷ lệ chốt: " + formatPct(v.closeRate) + " → " + Math.ceil(r.balanced.closeRate) + "% · " +
+        "Lợi nhuận ròng: " + formatPct(v.netProfit) + " → " + formatPct(r.balanced.netProfit);
+
+      $("plan1").classList.toggle("highlight", r.bottleneck === "leads");
+      $("plan2").classList.toggle("highlight", r.bottleneck === "sales");
+      $("plan3").classList.toggle("highlight",
+        r.bottleneck === "overall" || r.bottleneck === "balance" || r.bottleneck === "margin");
+    }
+
+    if (window.innerWidth < 860) {
+      $("resultPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = readInputs();
+    if (!v) return;
+    var r = compute(v);
+    render(v, r);
+  });
+
+})();
+</script>
+</body></html>
